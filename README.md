@@ -11,8 +11,6 @@ Le premier coup et ses cases voisines sont protégés. Le jeu propose un afficha
 > Projet académique ULB — INFO-F106.
 > Projet d’informatique · Projet 1 · 2022–2023
 
----
-
 <a id="captures-decran"></a>
 
 ## 📸 Captures d’écran
@@ -36,8 +34,6 @@ Le premier coup et ses cases voisines sont protégés. Le jeu propose un afficha
 - [Documentation](#documentation)
 - [Licence](#licence)
 
----
-
 <a id="fonctionnalites"></a>
 
 ## ✨ Fonctionnalités
@@ -49,8 +45,6 @@ Le premier coup et ses cases voisines sont protégés. Le jeu propose un afficha
 - **Gestion des drapeaux** : la commande de marquage pose un drapeau sur une case inexplorée ou le retire s’il est déjà présent, dans la limite du nombre de mines.
 - **Fin de partie** : une partie est gagnée lorsque toutes les mines sont marquées exactement, ou lorsque toutes les cases non minées sont dévoilées sans drapeau restant ; elle est perdue en révélant une mine.
 
----
-
 <a id="prerequis"></a>
 
 ## 🧰 Prérequis
@@ -59,8 +53,6 @@ Le premier coup et ses cases voisines sont protégés. Le jeu propose un afficha
 - Un terminal prenant en charge les séquences ANSI pour bénéficier de l’affichage coloré.
 
 Le jeu lui-même n’a aucune dépendance externe. `pytest` est nécessaire uniquement pour lancer les tests.
-
----
 
 <a id="installation"></a>
 
@@ -73,8 +65,6 @@ git clone https://github.com/9Chrk/Minesweeper.git
 cd Minesweeper
 ```
 
----
-
 <a id="lancement"></a>
 
 ## ▶️ Lancement
@@ -86,8 +76,6 @@ python demineur.py 10 10 20
 ```
 
 Le programme attend ensuite obligatoirement un premier dévoilement avant de générer les mines.
-
----
 
 <a id="utilisation"></a>
 
@@ -107,8 +95,6 @@ Les coordonnées commencent à `0`. Par exemple, `c 2 3` dévoile la case de la 
 
 Les caractères affichés sur la grille correspondent à l’état de chaque case : `.` pour une case encore masquée, `F` pour un drapeau, `X` pour une mine dévoilée et `0` à `8` pour le nombre de mines adjacentes. Une mine révélée met fin à la partie.
 
----
-
 <a id="architecture"></a>
 
 ## 🧱 Architecture
@@ -120,8 +106,6 @@ Deux matrices de chaînes sont maintenues en mémoire. `game_board` représente 
 La logique s’appuie sur `get_neighbors()` pour limiter les huit voisins possibles aux dimensions de la grille. `place_mines()` tire des coordonnées aléatoires distinctes en excluant la zone initiale. `fill_in_board()` parcourt ensuite les mines et incrémente leurs voisins. Enfin, `propagate_click()` utilise une récursion pour étendre le dévoilement depuis les cases ayant la valeur `0`, tout en révélant leurs bordures non minées.
 
 Pendant la boucle de `main()`, `parse_input()` lit et valide les commandes, puis le programme met à jour `game_board`. `check_win()` compare les positions des drapeaux et des mines, ou celles des cases encore masquées et des mines, pour déterminer l’issue de la partie. `print_board()` et `print_game()` assurent le rendu et les messages d’état.
-
----
 
 <a id="flux-general"></a>
 
@@ -141,8 +125,6 @@ boucle de jeu : parse_input() → mise à jour de game_board
 check_win() → victoire, défaite ou tour suivant
 ```
 
----
-
 <a id="structure-du-projet"></a>
 
 ## 📂 Structure du projet
@@ -155,8 +137,6 @@ Minesweeper/
 ├── LICENSE             # Texte de la licence MIT
 └── README.md           # Documentation du dépôt
 ```
-
----
 
 <a id="tests"></a>
 
@@ -171,8 +151,6 @@ pytest -v demineur_test.py
 ```
 
 Les tests simulent les entrées du joueur et vérifient que `main()` renvoie `1` pour une victoire et `0` pour une défaite.
-
----
 
 <a id="problemes-frequents"></a>
 
@@ -198,15 +176,11 @@ L’affichage s’appuie sur des séquences ANSI. Utilisez un terminal compatibl
 
 Les tests nécessitent `pytest`, qui n’est pas une dépendance du jeu lui-même. Installez-le dans votre environnement Python avant d’exécuter la commande de test.
 
----
-
 <a id="documentation"></a>
 
 ## 📄 Documentation
 
 - [Projet Demineur.pdf](Projet%20Demineur.pdf)
-
----
 
 <a id="licence"></a>
 
