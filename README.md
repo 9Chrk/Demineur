@@ -1,27 +1,44 @@
 # Minesweeper
 
-![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue)
-![Interface](https://img.shields.io/badge/Interface-terminal-lightgrey)
-![Licence MIT](https://img.shields.io/badge/Licence-MIT-green)
+![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue?style=flat-square)
+![Interface](https://img.shields.io/badge/Interface-terminal-lightgrey?style=flat-square)
+![Licence MIT](https://img.shields.io/badge/Licence-MIT-green?style=flat-square)
 
-Minesweeper est une implémentation en ligne de commande du célèbre jeu de Démineur, écrite en Python. Une partie se joue sur une grille dont les dimensions et le nombre de mines sont fournis au lancement : il faut dévoiler les cases sûres sans tomber sur une mine.
+Minesweeper est un **jeu de démineur dans le terminal**, écrit en **Python**. Dévoilez les cases sûres et marquez les mines avec des drapeaux sur une grille dont vous choisissez les dimensions et le nombre de mines.
 
-Les mines ne sont placées qu’après le premier dévoilement. La case de départ et ses huit voisines éventuelles sont donc protégées, puis le terminal affiche la grille, ses coordonnées et les changements d’état au fil des coups. Le projet n’utilise que la bibliothèque standard de Python ; les tests automatisés reposent sur `pytest`.
+Le premier coup et ses cases voisines sont protégés. Le jeu propose un affichage coloré et le dévoilement automatique des zones vides. Il utilise uniquement la bibliothèque standard de Python ; les tests reposent sur `pytest`.
+
+> Projet académique ULB — INFO-F106.
+> Projet d’informatique · Projet 1 · 2022–2023
+
+---
+
+<a id="captures-decran"></a>
+
+## 📸 Captures d’écran
+
+![Grille de démineur dans le terminal](https://github.com/user-attachments/assets/0da7102f-52a4-4451-93a2-15395b024395)
+
+---
 
 ## 📖 Sommaire
 
-- [Fonctionnalités](#-fonctionnalités)
-- [Prérequis](#-prérequis)
-- [Installation](#-installation)
-- [Lancement](#️-lancement)
-- [Utilisation](#-utilisation)
-- [Architecture](#-architecture)
-- [Flux général](#-flux-général)
-- [Tests](#-tests)
-- [Structure du projet](#-structure-du-projet)
-- [Documentation associée](#-documentation-associée)
-- [Problèmes fréquents](#-problèmes-fréquents)
-- [Licence](#-licence)
+- [Fonctionnalités](#fonctionnalites)
+- [Prérequis](#prerequis)
+- [Installation](#installation)
+- [Lancement](#lancement)
+- [Utilisation](#utilisation)
+- [Architecture](#architecture)
+- [Flux général](#flux-general)
+- [Structure du projet](#structure-du-projet)
+- [Tests](#tests)
+- [Problèmes fréquents](#problemes-frequents)
+- [Documentation](#documentation)
+- [Licence](#licence)
+
+---
+
+<a id="fonctionnalites"></a>
 
 ## ✨ Fonctionnalités
 
@@ -32,12 +49,20 @@ Les mines ne sont placées qu’après le premier dévoilement. La case de dépa
 - **Gestion des drapeaux** : la commande de marquage pose un drapeau sur une case inexplorée ou le retire s’il est déjà présent, dans la limite du nombre de mines.
 - **Fin de partie** : une partie est gagnée lorsque toutes les mines sont marquées exactement, ou lorsque toutes les cases non minées sont dévoilées sans drapeau restant ; elle est perdue en révélant une mine.
 
+---
+
+<a id="prerequis"></a>
+
 ## 🧰 Prérequis
 
 - Python **3.10** ou version ultérieure. Le code emploie notamment la syntaxe d’annotations `list[...]` et l’union de types avec `|`.
 - Un terminal prenant en charge les séquences ANSI pour bénéficier de l’affichage coloré.
 
 Le jeu lui-même n’a aucune dépendance externe. `pytest` est nécessaire uniquement pour lancer les tests.
+
+---
+
+<a id="installation"></a>
 
 ## 📦 Installation
 
@@ -48,6 +73,10 @@ git clone https://github.com/9Chrk/Demineur.git
 cd Demineur
 ```
 
+---
+
+<a id="lancement"></a>
+
 ## ▶️ Lancement
 
 Exécutez `demineur.py` en passant, dans cet ordre, le nombre de lignes, le nombre de colonnes et le nombre de mines :
@@ -57,6 +86,10 @@ python demineur.py 10 10 20
 ```
 
 Le programme attend ensuite obligatoirement un premier dévoilement avant de générer les mines.
+
+---
+
+<a id="utilisation"></a>
 
 ## 🎮 Utilisation
 
@@ -74,6 +107,10 @@ Les coordonnées commencent à `0`. Par exemple, `c 2 3` dévoile la case de la 
 
 Les caractères affichés sur la grille correspondent à l’état de chaque case : `.` pour une case encore masquée, `F` pour un drapeau, `X` pour une mine dévoilée et `0` à `8` pour le nombre de mines adjacentes. Une mine révélée met fin à la partie.
 
+---
+
+<a id="architecture"></a>
+
 ## 🧱 Architecture
 
 Le projet est volontairement regroupé dans `demineur.py`. Ce fichier assure à la fois l’interface en terminal, l’état de la partie et les règles du jeu ; `main()` est le point d’entrée exécuté lorsque le fichier est lancé directement.
@@ -83,6 +120,10 @@ Deux matrices de chaînes sont maintenues en mémoire. `game_board` représente 
 La logique s’appuie sur `get_neighbors()` pour limiter les huit voisins possibles aux dimensions de la grille. `place_mines()` tire des coordonnées aléatoires distinctes en excluant la zone initiale. `fill_in_board()` parcourt ensuite les mines et incrémente leurs voisins. Enfin, `propagate_click()` utilise une récursion pour étendre le dévoilement depuis les cases ayant la valeur `0`, tout en révélant leurs bordures non minées.
 
 Pendant la boucle de `main()`, `parse_input()` lit et valide les commandes, puis le programme met à jour `game_board`. `check_win()` compare les positions des drapeaux et des mines, ou celles des cases encore masquées et des mines, pour déterminer l’issue de la partie. `print_board()` et `print_game()` assurent le rendu et les messages d’état.
+
+---
+
+<a id="flux-general"></a>
 
 ## 🧬 Flux général
 
@@ -100,17 +141,9 @@ boucle de jeu : parse_input() → mise à jour de game_board
 check_win() → victoire, défaite ou tour suivant
 ```
 
-## 🧪 Tests
+---
 
-Les scénarios de test sont regroupés dans `demineur_test.py`. Ils vérifient notamment le placement déterministe des mines avec une graine aléatoire, l’initialisation de la partie, les deux conditions de victoire, la défaite sur une mine et la reprise après des entrées hors limites ou des commandes invalides.
-
-Si `pytest` est disponible dans l’environnement, lancez :
-
-```bash
-pytest -v demineur_test.py
-```
-
-Les tests simulent les entrées du joueur et vérifient que `main()` renvoie `1` pour une victoire et `0` pour une défaite.
+<a id="structure-du-projet"></a>
 
 ## 📂 Structure du projet
 
@@ -123,9 +156,25 @@ Demineur/
 └── README.md           # Documentation du dépôt
 ```
 
-## 📄 Documentation associée
+---
 
-- [Projet Demineur.pdf](Projet%20Demineur.pdf)
+<a id="tests"></a>
+
+## 🧪 Tests
+
+Les scénarios de test sont regroupés dans `demineur_test.py`. Ils vérifient notamment le placement déterministe des mines avec une graine aléatoire, l’initialisation de la partie, les deux conditions de victoire, la défaite sur une mine et la reprise après des entrées hors limites ou des commandes invalides.
+
+Si `pytest` est disponible dans l’environnement, lancez :
+
+```bash
+pytest -v demineur_test.py
+```
+
+Les tests simulent les entrées du joueur et vérifient que `main()` renvoie `1` pour une victoire et `0` pour une défaite.
+
+---
+
+<a id="problemes-frequents"></a>
 
 ## ❗ Problèmes fréquents
 
@@ -148,6 +197,18 @@ L’affichage s’appuie sur des séquences ANSI. Utilisez un terminal compatibl
 ### `pytest: command not found`
 
 Les tests nécessitent `pytest`, qui n’est pas une dépendance du jeu lui-même. Installez-le dans votre environnement Python avant d’exécuter la commande de test.
+
+---
+
+<a id="documentation"></a>
+
+## 📄 Documentation
+
+- [Projet Demineur.pdf](Projet%20Demineur.pdf)
+
+---
+
+<a id="licence"></a>
 
 ## 📜 Licence
 
