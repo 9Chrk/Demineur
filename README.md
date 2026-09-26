@@ -8,8 +8,8 @@ Minesweeper est un **jeu de démineur dans le terminal**, écrit en **Python**. 
 
 Le premier coup et ses cases voisines sont protégés. Le jeu propose un affichage coloré et le dévoilement automatique des zones vides. Il utilise uniquement la bibliothèque standard de Python ; les tests reposent sur `pytest`.
 
-> Projet académique ULB — INFO-F106.
-> Projet d’informatique · Projet 1 · 2022–2023
+> Projet académique ULB — INFO-F106
+> Projet d’informatique 1 · 2022–2023
 
 <a id="captures-decran"></a>
 
