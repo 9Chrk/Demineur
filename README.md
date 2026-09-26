@@ -15,7 +15,7 @@ Le premier coup et ses cases voisines sont protégés. Le jeu propose un afficha
 
 ## 📸 Captures d’écran
 
-![Grille de démineur dans le terminal](https://github.com/user-attachments/assets/0da7102f-52a4-4451-93a2-15395b024395)
+![Grille de démineur dans le terminal](https://github.com/user-attachments/assets/0e9974fa-ff40-4f68-8d8b-4eae260a97ed)
 
 ---
 
