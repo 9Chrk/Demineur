@@ -69,8 +69,8 @@ Le jeu lui-même n’a aucune dépendance externe. `pytest` est nécessaire uniq
 Clonez le dépôt puis placez-vous à sa racine :
 
 ```bash
-git clone https://github.com/9Chrk/Demineur.git
-cd Demineur
+git clone https://github.com/9Chrk/Minesweeper.git
+cd Minesweeper
 ```
 
 ---
@@ -148,7 +148,7 @@ check_win() → victoire, défaite ou tour suivant
 ## 📂 Structure du projet
 
 ```text
-Demineur/
+Minesweeper/
 ├── demineur.py         # Point d’entrée, affichage terminal et règles du jeu
 ├── demineur_test.py    # Tests pytest des fonctions et scénarios de partie
 ├── Projet Demineur.pdf # Document PDF associé au projet
